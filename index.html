@@ -80,7 +80,6 @@ h1 {
   .btn-ar { font-size: 1.1rem; width: 80%; }
 }
 
-/* Carrusel para móvil */
 .columns {
   display: flex;
   gap: 1rem;
@@ -184,6 +183,9 @@ h1 {
 .dot.active { background-color: #d45a7a; }
 
 </style>
+
+<!-- Agregar Model Viewer -->
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body class="floating-hearts">
 <header>
@@ -212,11 +214,25 @@ h1 {
     <div class="carta">
       <h2>Lo que deseo contigo</h2>
       <p>Aquí tu tercer mensaje antes de la sorpresa final...</p>
-      <a class="btn-ar" rel="ar" href="model.usdz"
+
+      <!-- Model Viewer para AR -->
+      <model-viewer 
+        id="mi-modelo"
+        src="modelo.glb"
+        ios-src="modelo.usdz"
+        ar
+        ar-modes="webxr scene-viewer quick-look"
+        camera-controls
+        auto-rotate
+        alt="Sorpresa 3D"
+        style="width: 100%; height: 300px; margin-top: 1rem;">
+      </model-viewer>
+
+      <button class="btn-ar" id="boton-ar"
         style="font-family: inherit; display:block; text-align:center; padding:1.2rem; background:linear-gradient(135deg,#d45a7a,#ff8aa5); color:white; border-radius:18px; font-size:1.4rem; text-decoration:none; font-weight:600; box-shadow:0 6px 18px rgba(0,0,0,0.25); backdrop-filter: blur(10px); border:1px solid rgba(255,255,255,0.5); transition:all 0.35s ease; margin-top:1.5rem;"
         onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 28px rgba(0,0,0,0.30)';"
         onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 6px 18px rgba(0,0,0,0.25)';"
-      >Ver Sorpresa</a>
+      >Ver Sorpresa</button>
     </div>
   </div>
 </div>
@@ -264,6 +280,18 @@ container.addEventListener('scroll', () => {
   if(index !== currentSlide) {
     currentSlide = index;
     updateDots();
+  }
+});
+
+// Botón AR
+const botonAR = document.getElementById('boton-ar');
+const modelo = document.getElementById('mi-modelo');
+
+botonAR.addEventListener('click', () => {
+  if (modelo.enterAR) {
+    modelo.enterAR();
+  } else {
+    alert("Tu dispositivo no soporta AR");
   }
 });
 </script>
