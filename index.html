@@ -183,9 +183,6 @@ h1 {
 .dot.active { background-color: #d45a7a; }
 
 </style>
-
-<!-- Model Viewer -->
-<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body class="floating-hearts">
 <header>
@@ -215,24 +212,12 @@ h1 {
       <h2>Lo que deseo contigo</h2>
       <p>Aquí tu tercer mensaje antes de la sorpresa final...</p>
 
-      <!-- Model Viewer para AR -->
-      <model-viewer 
-        id="mi-modelo"
-        src="modelo.glb"
-        ios-src="modelo.usdz"
-        ar
-        ar-modes="quick-look"
-        camera-controls
-        auto-rotate
-        alt="Sorpresa 3D"
-        style="width: 100%; height: 300px; margin-top: 1rem;">
-      </model-viewer>
-
-      <button class="btn-ar" id="boton-ar"
+      <!-- 🔥 Aquí va el enlace DIRECTO de Dropbox -->
+      <a class="btn-ar" rel="ar" href="https://www.dropbox.com/scl/fi/qb7m1zrdnntf8jqznx8ux/model.usdz?rlkey=ljx4bjahgvv23v55i2olcsmx5&st=a1iw36lh&raw=1"
         style="font-family: inherit; display:block; text-align:center; padding:1.2rem; background:linear-gradient(135deg,#d45a7a,#ff8aa5); color:white; border-radius:18px; font-size:1.4rem; text-decoration:none; font-weight:600; box-shadow:0 6px 18px rgba(0,0,0,0.25); backdrop-filter: blur(10px); border:1px solid rgba(255,255,255,0.5); transition:all 0.35s ease; margin-top:1.5rem;"
         onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 10px 28px rgba(0,0,0,0.30)';"
         onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 6px 18px rgba(0,0,0,0.25)';"
-      >Ver Sorpresa</button>
+      >Ver Sorpresa</a>
     </div>
   </div>
 </div>
@@ -273,31 +258,12 @@ function goToSlide(index) {
   updateDots();
 }
 
-// Detectar scroll manual
 const container = document.getElementById('columns');
 container.addEventListener('scroll', () => {
   const index = Math.round(container.scrollLeft / container.offsetWidth);
   if(index !== currentSlide) {
     currentSlide = index;
     updateDots();
-  }
-});
-
-// Botón AR optimizado para iPhone
-const botonAR = document.getElementById('boton-ar');
-const modelo = document.getElementById('mi-modelo');
-
-botonAR.addEventListener('click', () => {
-  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-  if(isSafari) {
-    // iPhone Safari: abrir Quick Look directamente
-    const usdzURL = modelo.getAttribute('ios-src');
-    window.location.href = usdzURL;
-  } else if (modelo.enterAR) {
-    // Otros dispositivos compatibles AR
-    modelo.enterAR();
-  } else {
-    alert("Tu dispositivo no soporta AR");
   }
 });
 </script>
