@@ -6,11 +6,11 @@
 <title>Un Pedacito de Mi Corazón</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@500;600&family=Great+Vibes&display=swap');
 
 body {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;  /* ← AHORA TODO EL TEXTO NORMAL USA MONTSERRAT */
+  font-family: 'Montserrat', sans-serif;
   background: linear-gradient(135deg, #f8d7e3, #fef4f7, #f9d9e8);
   background-attachment: fixed;
   color: #333;
@@ -18,11 +18,17 @@ body {
   overflow-x: hidden;
 }
 
-.romantic-title,
-.carta h2 {
-  font-family: 'Great Vibes', cursive; /* ← SOLO LOS TÍTULOS SE MANTIENEN ELEGANTES */
+/* TÍTULO PRINCIPAL */
+.romantic-title {
+  font-family: 'Great Vibes', cursive;
 }
 
+/* SUBTÍTULOS (sección de las cartas) */
+.carta h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.3rem;
+  color: #c9486e;
+}
 body {
   margin: 0;
   font-family: inherit;
