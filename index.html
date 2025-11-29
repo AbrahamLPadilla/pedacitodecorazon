@@ -184,7 +184,7 @@ h1 {
 
 </style>
 
-<!-- Agregar Model Viewer -->
+<!-- Model Viewer -->
 <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body class="floating-hearts">
@@ -221,7 +221,7 @@ h1 {
         src="modelo.glb"
         ios-src="modelo.usdz"
         ar
-        ar-modes="webxr scene-viewer quick-look"
+        ar-modes="quick-look"
         camera-controls
         auto-rotate
         alt="Sorpresa 3D"
@@ -283,12 +283,18 @@ container.addEventListener('scroll', () => {
   }
 });
 
-// Botón AR
+// Botón AR optimizado para iPhone
 const botonAR = document.getElementById('boton-ar');
 const modelo = document.getElementById('mi-modelo');
 
 botonAR.addEventListener('click', () => {
-  if (modelo.enterAR) {
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  if(isSafari) {
+    // iPhone Safari: abrir Quick Look directamente
+    const usdzURL = modelo.getAttribute('ios-src');
+    window.location.href = usdzURL;
+  } else if (modelo.enterAR) {
+    // Otros dispositivos compatibles AR
     modelo.enterAR();
   } else {
     alert("Tu dispositivo no soporta AR");
